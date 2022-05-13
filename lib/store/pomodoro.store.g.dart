@@ -9,8 +9,7 @@ part of 'pomodoro.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PomodoroStore on _PomodoroStore, Store {
-  late final _$iniciadoAtom =
-      Atom(name: '_PomodoroStore.iniciado', context: context);
+  final _$iniciadoAtom = Atom(name: '_PomodoroStore.iniciado');
 
   @override
   bool get iniciado {
@@ -25,8 +24,7 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$minutosAtom =
-      Atom(name: '_PomodoroStore.minutos', context: context);
+  final _$minutosAtom = Atom(name: '_PomodoroStore.minutos');
 
   @override
   int get minutos {
@@ -41,8 +39,7 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$segundosAtom =
-      Atom(name: '_PomodoroStore.segundos', context: context);
+  final _$segundosAtom = Atom(name: '_PomodoroStore.segundos');
 
   @override
   int get segundos {
@@ -57,8 +54,7 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$tempoTrabalhoAtom =
-      Atom(name: '_PomodoroStore.tempoTrabalho', context: context);
+  final _$tempoTrabalhoAtom = Atom(name: '_PomodoroStore.tempoTrabalho');
 
   @override
   int get tempoTrabalho {
@@ -73,8 +69,7 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$tempoDescansoAtom =
-      Atom(name: '_PomodoroStore.tempoDescanso', context: context);
+  final _$tempoDescansoAtom = Atom(name: '_PomodoroStore.tempoDescanso');
 
   @override
   int get tempoDescanso {
@@ -89,8 +84,7 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$tipoIntervaloAtom =
-      Atom(name: '_PomodoroStore.tipoIntervalo', context: context);
+  final _$tipoIntervaloAtom = Atom(name: '_PomodoroStore.tipoIntervalo');
 
   @override
   TipoIntervalo get tipoIntervalo {
@@ -105,8 +99,8 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
-  late final _$_PomodoroStoreActionController =
-      ActionController(name: '_PomodoroStore', context: context);
+  final _$_PomodoroStoreActionController =
+      ActionController(name: '_PomodoroStore');
 
   @override
   void iniciar() {

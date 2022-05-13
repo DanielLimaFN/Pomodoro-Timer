@@ -5,7 +5,6 @@ class CronometroBotao extends StatelessWidget {
   final IconData icone;
   final void Function()? click;
 
-
   const CronometroBotao({
     Key? key,
     required this.texto,

@@ -6,8 +6,7 @@ part 'pomodoro.store.g.dart';
 
 class PomodoroStore = _PomodoroStore with _$PomodoroStore;
 
-enum TipoIntervalo {TRABALHO, DESCANSO}
-
+enum TipoIntervalo { TRABALHO, DESCANSO }
 
 abstract class _PomodoroStore with Store {
   @observable
@@ -28,29 +27,26 @@ abstract class _PomodoroStore with Store {
   @observable
   TipoIntervalo tipoIntervalo = TipoIntervalo.TRABALHO;
 
-
-
   Timer? cronometro;
-
 
   @action
   void iniciar() {
     iniciado = true;
     cronometro = Timer.periodic(Duration(seconds: 1), (timer) {
-      if(minutos == 0 && segundos == 0){
-        _tocarTipoIntervalo();
-      } else if(segundos == 0){
+      if (minutos == 0 && segundos == 0) {
+        _trocarTipoInvervalo();
+      } else if (segundos == 0) {
         segundos = 59;
         minutos--;
-      }else {
+      } else {
         segundos--;
       }
-
     });
   }
 
   @action
   void parar() {
+    iniciado = false;
     cronometro?.cancel();
   }
 
@@ -63,61 +59,53 @@ abstract class _PomodoroStore with Store {
 
   @action
   void incrementarTempoTrabalho() {
-    if(tempoTrabalho == 99){
-      return;
-    }
     tempoTrabalho++;
-    if(estaTrabalhando()){
+    if (estaTrabalhando()) {
       reiniciar();
     }
   }
 
   @action
   void decrementarTempoTrabalho() {
-    if(tempoTrabalho == 1){
-      return;
-    }
-    tempoTrabalho--;
-    if(estaTrabalhando()){
-      reiniciar();
+    if (tempoTrabalho > 1) {
+      tempoTrabalho--;
+      if (estaTrabalhando()) {
+        reiniciar();
+      }
     }
   }
 
   @action
   void incrementarTempoDescanso() {
-    if(tempoDescanso == 99){
-      return;
-    }
-
     tempoDescanso++;
-    if(estaDescansado()){
+    if (estaDescansando()) {
       reiniciar();
     }
   }
 
   @action
   void decrementarTempoDescanso() {
-    if(tempoDescanso == 1){
-      return;
-    }
-    tempoDescanso--;
-    if(estaDescansado()){
-      reiniciar();
+    if (tempoDescanso > 1) {
+      tempoDescanso--;
+      if (estaDescansando()) {
+        reiniciar();
+      }
     }
   }
 
-  bool estaTrabalhando(){
+  bool estaTrabalhando() {
     return tipoIntervalo == TipoIntervalo.TRABALHO;
   }
-  bool estaDescansado(){
+
+  bool estaDescansando() {
     return tipoIntervalo == TipoIntervalo.DESCANSO;
   }
 
-  void _tocarTipoIntervalo(){
-    if(estaTrabalhando()){
+  void _trocarTipoInvervalo() {
+    if (estaTrabalhando()) {
       tipoIntervalo = TipoIntervalo.DESCANSO;
       minutos = tempoDescanso;
-    }else{
+    } else {
       tipoIntervalo = TipoIntervalo.TRABALHO;
       minutos = tempoTrabalho;
     }
